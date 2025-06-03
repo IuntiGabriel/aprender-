@@ -1,0 +1,7 @@
+//prototipo test alumno
+alumno@test.com
+123456
+
+//prototipo test admin
+admin@aprender.plus
+admin

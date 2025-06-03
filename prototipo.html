@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo - Aprender+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .sidebar-icon {
+            transition: all 0.2s ease-in-out;
+        }
+        .sidebar-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Contenedor Principal de la App -->
+    <div id="app-container" class="hidden md:flex min-h-screen">
+        <!-- Barra Lateral (Sidebar) -->
+        <aside class="w-64 bg-white shadow-lg flex flex-col">
+            <div class="h-20 flex items-center justify-center border-b">
+                 <div class="flex items-center">
+                    <span class="font-poppins text-3xl font-bold text-gray-800">Aprender</span>
+                    <span class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-500 to-emerald-600 ml-1">+</span>
+                </div>
+            </div>
+            <nav class="flex-grow p-4 space-y-2">
+                <a href="#" onclick="navigate('dashboard')" class="flex items-center px-4 py-3 text-gray-700 bg-gray-200 rounded-lg font-semibold">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    Panel Principal
+                </a>
+                <a href="#" onclick="navigate('enroll')" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                    Inscripción a Cursos
+                </a>
+                <a href="#" onclick="navigate('payments')" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                    Mis Pagos
+                </a>
+            </nav>
+            <div class="p-4 border-t">
+                 <a href="#" onclick="logout()" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Cerrar Sesión
+                </a>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="flex-1">
+            <header class="h-20 bg-white shadow-sm flex items-center justify-between px-8">
+                <h1 id="page-title" class="text-2xl font-bold text-gray-800">Panel Principal</h1>
+                <div class="flex items-center">
+                    <span class="mr-4 font-semibold">Bienvenido, Alumno</span>
+                    <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=A" class="rounded-full">
+                </div>
+            </header>
+
+            <div class="p-8">
+                <!-- Pantalla: Dashboard -->
+                <div id="dashboard" class="page active">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer" onclick="navigate('enroll')">
+                            <h3 class="font-bold text-lg text-emerald-600">Inscribirse a un Curso</h3>
+                            <p class="text-gray-600 mt-2">Explora nuestra oferta académica y encuentra tu próximo desafío.</p>
+                        </div>
+                         <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer">
+                            <h3 class="font-bold text-lg text-emerald-600">Mis Cursos</h3>
+                            <p class="text-gray-600 mt-2">Accede al material y las clases de los cursos en los que ya estás inscripto.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer" onclick="navigate('payments')">
+                            <h3 class="font-bold text-lg text-emerald-600">Estado de Pagos</h3>
+                            <p class="text-gray-600 mt-2">Consulta el estado de tus cuotas y realiza pagos pendientes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pantalla: Inscripción a Cursos -->
+                <div id="enroll" class="page">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                         <div class="space-y-4">
+                            <!-- Curso 1 -->
+                            <div class="flex items-center justify-between p-4 border rounded-lg">
+                                <div>
+                                    <h4 class="font-bold text-lg">Desarrollo Web Full Stack</h4>
+                                    <p class="text-gray-600 text-sm">Aprende a crear aplicaciones web completas con las tecnologías más demandadas.</p>
+                                </div>
+                                <button onclick="enrollInCourse('Desarrollo Web Full Stack')" class="bg-emerald-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Inscribirme</button>
+                            </div>
+                            <!-- Curso 2 -->
+                            <div class="flex items-center justify-between p-4 border rounded-lg">
+                                <div>
+                                    <h4 class="font-bold text-lg">Marketing Digital y Redes Sociales</h4>
+                                    <p class="text-gray-600 text-sm">Domina las estrategias para potenciar marcas en el mundo digital.</p>
+                                </div>
+                                <button onclick="enrollInCourse('Marketing Digital y Redes Sociales')" class="bg-emerald-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Inscribirme</button>
+                            </div>
+                             <!-- Curso 3 -->
+                            <div class="flex items-center justify-between p-4 border rounded-lg">
+                                <div>
+                                    <h4 class="font-bold text-lg">Introducción al Diseño UX/UI</h4>
+                                    <p class="text-gray-600 text-sm">Crea interfaces intuitivas y atractivas centradas en el usuario.</p>
+                                </div>
+                                <button onclick="enrollInCourse('Introducción al Diseño UX/UI')" class="bg-emerald-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Inscribirme</button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Pantalla: Detalle de Curso (Simulada) -->
+                 <div id="course-detail" class="page">
+                    <div class="bg-white p-8 rounded-lg shadow">
+                        <button onclick="navigate('enroll')" class="text-sm text-emerald-600 font-semibold mb-4">&larr; Volver a Cursos</button>
+                        <h2 id="course-detail-title" class="text-3xl font-bold mb-6"></h2>
+                        <div class="space-y-3">
+                            <p class="p-4 bg-gray-100 rounded-md">Clase 1: Introducción al Curso</p>
+                            <p class="p-4 bg-gray-100 rounded-md">Clase 2: Herramientas y Conceptos Clave</p>
+                            <p class="p-4 bg-gray-100 rounded-md">Clase 3: Primer Proyecto Práctico</p>
+                            <p class="p-4 bg-gray-100 rounded-md">Clase 4: Consultas y Próximos Pasos</p>
+                        </div>
+                    </div>
+                 </div>
+
+                <!-- Pantalla: Mis Pagos -->
+                <div id="payments" class="page">
+                   <div class="bg-white p-6 rounded-lg shadow">
+                       <h3 class="font-bold text-lg mb-4">Estado de Cuenta</h3>
+                       <table class="w-full text-left">
+                           <thead>
+                               <tr class="border-b">
+                                   <th class="py-2">Concepto</th>
+                                   <th class="py-2">Fecha Vto.</th>
+                                   <th class="py-2">Monto</th>
+                                   <th class="py-2">Estado</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr class="border-b">
+                                   <td class="py-3">Cuota Junio - Desarrollo Web</td>
+                                   <td class="py-3">10/06/2025</td>
+                                   <td class="py-3">$25.000</td>
+                                   <td class="py-3"><span class="bg-green-200 text-green-800 text-sm font-semibold px-2 py-1 rounded-full">Pagado</span></td>
+                               </tr>
+                               <tr class="border-b">
+                                   <td class="py-3">Cuota Julio - Desarrollo Web</td>
+                                   <td class="py-3">10/07/2025</td>
+                                   <td class="py-3">$25.000</td>
+                                   <td class="py-3"><span class="bg-yellow-200 text-yellow-800 text-sm font-semibold px-2 py-1 rounded-full">Pendiente</span></td>
+                               </tr>
+                               <tr>
+                                   <td class="py-3">Cuota Agosto - Desarrollo Web</td>
+                                   <td class="py-3">10/08/2025</td>
+                                   <td class="py-3">$25.000</td>
+                                   <td class="py-3"><span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded-full">Próximo</span></td>
+                               </tr>
+                           </tbody>
+                       </table>
+                   </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Pantalla de Login -->
+    <div id="login-screen" class="flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-sm">
+            <div class="bg-white shadow-lg rounded-xl p-8">
+                 <div class="flex items-center justify-center mb-6">
+                    <span class="font-poppins text-4xl font-bold text-gray-800">Aprender</span>
+                    <span class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-500 to-emerald-600 ml-1">+</span>
+                </div>
+                <h2 class="text-2xl font-bold text-center text-gray-700 mb-1">Bienvenido</h2>
+                <p class="text-center text-gray-500 mb-6">Ingresa a la plataforma</p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                        <input type="email" id="email" value="alumno@test.com" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                    </div>
+                     <div>
+                        <label for="password" class="block text-sm font-medium text-gray-600">Contraseña</label>
+                        <input type="password" id="password" value="123456" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                    </div>
+                    <button onclick="login()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Notificación -->
+    <div id="notification-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 id="notification-title" class="text-lg font-medium text-gray-900"></h3>
+            <div class="mt-2">
+                <p id="notification-message" class="text-sm text-gray-500"></p>
+            </div>
+            <div class="mt-4">
+                <button onclick="closeNotification()" class="w-full bg-emerald-600 text-white py-2 rounded-md">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Lógica de Navegación y Estado ---
+        
+        // Muestra la pantalla de login al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginScreen = document.getElementById('login-screen');
+            const appContainer = document.getElementById('app-container');
+            loginScreen.style.display = 'flex';
+            appContainer.style.display = 'none';
+        });
+
+        function login() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app-container').style.display = 'flex';
+            navigate('dashboard');
+        }
+
+        function logout() {
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('app-container').style.display = 'none';
+        }
+
+        function navigate(pageId) {
+            // Oculta todas las páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Muestra la página seleccionada
+            document.getElementById(pageId).classList.add('active');
+            
+            // Actualiza el título del header
+            const titles = {
+                dashboard: 'Panel Principal',
+                enroll: 'Inscripción a Cursos',
+                payments: 'Mis Pagos',
+                'course-detail': 'Detalle del Curso'
+            };
+            document.getElementById('page-title').textContent = titles[pageId] || 'Panel Principal';
+        }
+        
+        // --- Lógica de Interacciones ---
+
+        function showNotification(title, message) {
+            document.getElementById('notification-title').textContent = title;
+            document.getElementById('notification-message').textContent = message;
+            document.getElementById('notification-modal').style.display = 'flex';
+        }
+        
+        function closeNotification() {
+             document.getElementById('notification-modal').style.display = 'none';
+        }
+
+        function enrollInCourse(courseName) {
+            showNotification(
+                '¡Inscripción Exitosa!',
+                `Felicitaciones, te has inscripto correctamente al curso "${courseName}".`
+            );
+            setTimeout(() => {
+                document.getElementById('course-detail-title').textContent = courseName;
+                navigate('course-detail');
+                closeNotification();
+            }, 1000); // Pequeño delay para ver la notificación
+        }
+    </script>
+</body>
+</html>

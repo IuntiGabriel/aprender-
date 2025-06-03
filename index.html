@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -30,6 +30,9 @@
         }
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>
@@ -58,7 +61,13 @@
     Confirmation: NO SVG graphics or Mermaid JS were used in this document. All diagrams and charts are rendered using either Chart.js on Canvas or structured HTML with Tailwind CSS.
     -->
 
-    <header class="bg-[#00A878] text-white p-8 text-center">
+    <header class="bg-[#00A878] text-white p-8 text-center flex flex-col items-center">
+        <div class="mb-4">
+            <div class="flex items-center">
+                <span class="font-poppins text-5xl font-bold text-white">Aprender</span>
+                <span class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 to-amber-400 ml-1">+</span>
+            </div>
+        </div>
         <h1 class="text-4xl md:text-5xl font-black text-shadow">La Revolución Digital de las PyMEs Educativas</h1>
         <p class="mt-4 text-lg max-w-3xl mx-auto">Las instituciones educativas pierden hasta un 40% de su tiempo en tareas administrativas. Descubre cómo "Aprender+" transforma este desafío en una oportunidad de crecimiento.</p>
     </header>
@@ -381,4 +390,3 @@
     </script>
 </body>
 </html>
-<!-- End of HTML Document -->
